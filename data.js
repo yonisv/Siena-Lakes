@@ -1,0 +1,92 @@
+// Siena Lakes — Landscape Enhancement Tour
+// Data mirrors the final Yellowstone Landscape deck exactly (same zones, same order).
+
+const ZONES = [
+  {
+    id: 1,
+    slug: "entrance",
+    name: "Main Entrance & Arrival Court",
+    blurb: "The first impression. Bold specimen trees and stately palms set an elegant, welcoming tone the moment residents and guests arrive.",
+    plants: [
+      { common: "Hong Kong Orchid Tree", sci: "Bauhinia × blakeana", spec: "Full sun · 20–40 ft", hi: "Showy orchid-like purple blooms fall through spring", img: "hong-kong-orchid.jpg" },
+      { common: "Royal Palm", sci: "Roystonea regia", spec: "Full sun · 50–80 ft", hi: "Towering smooth gray trunk — the signature grand-entrance palm", img: "royal-palm.jpg" },
+      { common: "Sylvester Palm", sci: "Phoenix sylvestris", spec: "Full sun · 15–50 ft", hi: "Diamond-cut trunk with a full silver-green crown", img: "sylvester-palm.jpg" },
+      { common: "Live Oak Tree", sci: "Quercus virginiana", spec: "Full sun · 40–60 ft", hi: "Sprawling shade canopy; the iconic Florida specimen tree", img: "live-oak.jpg" },
+      { common: "Bougainvillea 'Raspberry Ice'", sci: "Bougainvillea × buttiana", spec: "Full sun · 3–6 ft", hi: "Variegated foliage with vivid magenta bracts", img: "bougainvillea-raspberry-ice.jpg" },
+      { common: "Crinum Lily", sci: "Crinum spp.", spec: "Sun – part shade · 3–4 ft", hi: "Bold strappy clumps topped with large fragrant blooms", img: "crinum-lily.jpg" },
+    ],
+  },
+  {
+    id: 2,
+    slug: "promenade",
+    name: "Central Lake Promenade & Walking Paths",
+    blurb: "The signature feature of the property. Plantings here frame the water and shade the paths residents walk every day.",
+    plants: [
+      { common: "Bald Cypress Tree", sci: "Taxodium distichum", spec: "Full sun · 50–70 ft", hi: "Feathery foliage that thrives right at the water's edge", img: "bald-cypress.jpg" },
+      { common: "Sabal Palm", sci: "Sabal palmetto", spec: "Full sun · 30–50 ft", hi: "Florida's state tree — hardy, native, and timeless", img: "sabal-palm.jpg" },
+      { common: "Silver Buttonwood Tree", sci: "Conocarpus erectus var. sericeus", spec: "Full sun · 20–30 ft", hi: "Shimmering silver foliage; highly salt tolerant", img: "silver-buttonwood.jpg" },
+      { common: "Podocarpus", sci: "Podocarpus macrophyllus", spec: "Sun – part shade · 6–10 ft", hi: "Dense green screen that trims cleanly to any shape", img: "podocarpus.jpg" },
+      { common: "Crape Jasmine", sci: "Tabernaemontana divaricata", spec: "Sun – part shade · 4–6 ft", hi: "Glossy leaves with fragrant white pinwheel flowers", img: "crape-jasmine.jpg" },
+      { common: "Variegated Ginger", sci: "Alpinia zerumbet 'Variegata'", spec: "Part shade · 4–8 ft", hi: "Striking yellow-striped tropical foliage", img: "variegated-ginger.jpg" },
+      { common: "Lady Palm", sci: "Rhapis excelsa", spec: "Shade – part shade · 6–10 ft", hi: "Elegant clumping fan palm for the shaded path stretches", img: "lady-palm.jpg" },
+    ],
+  },
+  {
+    id: 3,
+    slug: "courtyard",
+    name: "Courtyard Gardens",
+    blurb: "Intimate, social spaces. Layered color and lush foliage make the interior courtyards feel vibrant and inviting up close.",
+    plants: [
+      { common: "Petra Croton", sci: "Codiaeum variegatum 'Petra'", spec: "Sun – part shade · 3–6 ft", hi: "Bold red, orange and yellow veined leaves", img: "petra-croton.jpg" },
+      { common: "Magnificent Croton", sci: "Codiaeum variegatum", spec: "Sun – part shade · 4–6 ft", hi: "Vivid multicolor foliage for year-round interest", img: "magnificent-croton.jpg" },
+      { common: "Mamey Croton", sci: "Codiaeum variegatum", spec: "Sun – part shade · 3–5 ft", hi: "Twisting, fiery red-orange leaves", img: "mamey-croton.jpg" },
+      { common: "Dazzle Arboricola", sci: "Schefflera arboricola 'Dazzle'", spec: "Sun – part shade · 3–5 ft", hi: "Gold-speckled glossy foliage; easy care", img: "dazzle-arboricola.jpg" },
+      { common: "Nora Grant Ixora", sci: "Ixora coccinea 'Nora Grant'", spec: "Full sun · 3–4 ft", hi: "Large pink flower clusters most of the year", img: "nora-grant-ixora.jpg" },
+      { common: "'Auntie Lou' Cordyline", sci: "Cordyline fruticosa 'Auntie Lou'", spec: "Part shade · 3–4 ft", hi: "Bright chartreuse-and-pink upright foliage", img: "auntie-lou-cordyline.jpg" },
+      { common: "Philodendron Selloum", sci: "Thaumatophyllum bipinnatifidum", spec: "Sun – part shade · 5–8 ft", hi: "Lush, deeply-lobed tropical leaves", img: "philodendron-selloum.jpg" },
+    ],
+  },
+  {
+    id: 4,
+    slug: "pool",
+    name: "Pool & Amenity Deck",
+    blurb: "The resort lifestyle zone. Clean-lined palms and architectural accents give the pool and amenity areas a polished, vacation feel.",
+    plants: [
+      { common: "Alexander Palm", sci: "Ptychosperma elegans", spec: "Sun – part shade · 20–30 ft", hi: "Slender clustering palm for a clean poolside look", img: "alexander-palm.jpg" },
+      { common: "Robellini Palm", sci: "Phoenix roebelenii", spec: "Sun – part shade · 6–12 ft", hi: "Compact pygmy date palm with graceful arching fronds", img: "robellini-palm.jpg" },
+      { common: "Christmas Palm", sci: "Adonidia merrillii", spec: "Full sun · 15–20 ft", hi: "Tidy palm with bright red fruit in winter", img: "christmas-palm.jpg" },
+      { common: "Orange Bird of Paradise", sci: "Strelitzia reginae", spec: "Full sun · 3–5 ft", hi: "Iconic orange-and-blue crane-like flowers", img: "orange-bird-of-paradise.jpg" },
+      { common: "False Agave", sci: "Furcraea foetida", spec: "Full sun · 3–5 ft", hi: "Bold architectural rosette; drought tough", img: "false-agave.jpg" },
+      { common: "Purple Fountain Grass", sci: "Pennisetum setaceum 'Rubrum'", spec: "Full sun · 3–4 ft", hi: "Burgundy blades with soft feathery plumes", img: "purple-fountain-grass.jpg" },
+      { common: "Oleander 'Helen Johnson'", sci: "Nerium oleander 'Helen Johnson'", spec: "Full sun · 3–5 ft", hi: "Dwarf form with continuous pink blooms", img: "oleander-helen-johnson.jpg" },
+    ],
+  },
+  {
+    id: 5,
+    slug: "streetscape",
+    name: "Streetscape & Perimeter Roads",
+    blurb: "The everyday backdrop. Durable, heat- and salt-tolerant plantings keep the drives and roadsides sharp with minimal upkeep.",
+    plants: [
+      { common: "Japanese Blueberry", sci: "Elaeocarpus decipiens", spec: "Sun – part shade · 20–40 ft", hi: "Dense evergreen with red accent leaves year-round", img: "japanese-blueberry.jpg" },
+      { common: "Black Olive 'Shady Lady'", sci: "Bucida buceras 'Shady Lady'", spec: "Full sun · 30–50 ft", hi: "Layered horizontal canopy; a clean street tree", img: "black-olive-shady-lady.jpg" },
+      { common: "African Iris", sci: "Dietes iridioides", spec: "Sun – part shade · 2–4 ft", hi: "Tough clumping blades with white iris flowers", img: "african-iris.jpg" },
+      { common: "Emerald Blanket Carissa", sci: "Carissa macrocarpa 'Emerald Blanket'", spec: "Full sun – part shade · 1–2 ft", hi: "Low spreading groundcover; very salt tolerant", img: "emerald-blanket-carissa.jpg" },
+      { common: "Allamanda", sci: "Allamanda cathartica", spec: "Full sun · 4–6 ft", hi: "Glossy foliage with bright yellow trumpet flowers", img: "allamanda.jpg" },
+      { common: "Bougainvillea 'Ms Alice'", sci: "Bougainvillea 'Ms Alice'", spec: "Full sun · 3–5 ft", hi: "Crisp white bracts; compact and floriferous", img: "bougainvillea-ms-alice.jpg" },
+    ],
+  },
+  {
+    id: 6,
+    slug: "ponds",
+    name: "Retention Ponds & South Perimeter",
+    blurb: "A strong natural finish. Tropical palms and flowering accents turn the pond edges and southern border into a lush, polished view.",
+    plants: [
+      { common: "Chinese Windmill Palm", sci: "Trachycarpus fortunei", spec: "Sun – part shade · 10–20 ft", hi: "Hardy fan palm with a distinctive fibrous trunk", img: "chinese-windmill-palm.jpg" },
+      { common: "Malaysia Coconut Palm", sci: "Cocos nucifera", spec: "Full sun · 30–60 ft", hi: "The classic tropical coconut palm silhouette", img: "malaysia-coconut-palm.jpg" },
+      { common: "Bottlebrush Tree", sci: "Callistemon spp. (Melaleuca viminalis)", spec: "Full sun · 10–25 ft", hi: "Brilliant red bottlebrush blooms; a bird magnet", img: "bottlebrush.jpg" },
+      { common: "Desert Cassia Tree", sci: "Senna polyphylla", spec: "Full sun · 8–12 ft", hi: "Airy form with profuse bright yellow flowers", img: "desert-cassia.jpg" },
+      { common: "Jatropha", sci: "Jatropha integerrima", spec: "Full sun · 6–10 ft", hi: "Clusters of red star flowers nearly year-round", img: "jatropha.jpg" },
+      { common: "Panama Rose", sci: "Rondeletia leucophylla", spec: "Sun – part shade · 3–5 ft", hi: "Fragrant pink blooms; a butterfly favorite", img: "panama-rose.jpg" },
+    ],
+  },
+];
