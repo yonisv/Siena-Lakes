@@ -235,7 +235,7 @@ function bindPlantCards(zone) {
     el.addEventListener("click", () => {
       const idx = parseInt(el.getAttribute("data-plant-index"), 10);
       openModal(zone.plants[idx]);
-    }); i
+    }); 
   });
 }
 
