@@ -114,7 +114,7 @@ function renderZone(id) {
     .map(
       (p, i) => `
     <div class="plant-card" data-plant-zone="${zone.id}" data-plant-index="${i}">
-      <div class="plant-photo-wrap"><img src="images/${p.img}" alt="${p.common}" loading="lazy"></div>
+      <div class="plant-photo-wrap"><img src="${p.img}" alt="${p.common}" loading="lazy"></div>
       <div class="plant-card-body">
         <h4>${p.common}</h4>
         <p class="sci">${p.sci}</p>
