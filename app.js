@@ -248,7 +248,7 @@ function openModal(plant) {
   overlay.className = "modal-overlay";
   overlay.innerHTML = `
     <div class="modal-card">
-      <div class="modal-photo"><img src="images/${plant.img}" alt="${plant.common}"></div>
+      <div class="modal-photo"><img src="${plant.img}" alt="${plant.common}"></div>
       <div class="modal-body">
         <button class="modal-close" data-close>✕</button>
         <h3>${plant.common}</h3>
